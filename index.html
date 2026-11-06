@@ -2,59 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WitchSec</title>
-  <meta name="description" content="WitchSec — Luau obfuscator with custom VM. Runs entirely in your browser.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WitchSec — Luau Obfuscator</title>
+  <meta name="description" content="WitchSec — Luau obfuscator. Runs entirely in your browser.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="brand">
     <div class="logo">✦ WitchSec</div>
-    <p class="tagline">Luau VM obfuscator. Runs in your browser. Nothing leaves your device.</p>
+    <p class="tagline">Luau obfuscator. Runs entirely in your browser.</p>
   </header>
 
   <main>
-    <section id="drop" class="drop">
-      <p class="big">Drop <code>.lua</code> · <code>.luau</code> · <code>.txt</code></p>
-      <p class="sub">or <span class="link">tap to browse</span></p>
-      <input id="file-input" type="file" multiple accept=".lua,.luau,.txt,text/plain" hidden>
+    <section class="block">
+      <div class="block-head">
+        <span class="label">Source</span>
+        <div class="btns">
+          <button id="btn-upload" class="btn-tiny">Upload</button>
+          <button id="btn-example" class="btn-tiny">Example</button>
+          <button id="btn-clear-src" class="btn-tiny">Clear</button>
+        </div>
+        <input id="file-input" type="file" accept=".lua,.luau,.txt,text/plain" hidden>
+      </div>
+      <textarea id="source" class="code" spellcheck="false" placeholder="Write or paste Luau code here..."></textarea>
+      <div class="block-foot"><span id="src-stats"></span></div>
     </section>
 
-    <section class="panel">
-      <h2>Options</h2>
-      <div class="row">
-        <label>Seed
-          <input id="seed" type="number" min="0" placeholder="random">
-        </label>
+    <section class="controls">
+      <div class="seed-row">
+        <label>Seed <input id="seed" type="number" min="0" placeholder="random"></label>
       </div>
-      <div class="row">
-        <label><input type="checkbox" id="opt-vm" checked> Bytecode VM</label>
-        <label><input type="checkbox" id="opt-strings" checked> Encrypt strings</label>
-        <label><input type="checkbox" id="opt-comments" checked> Strip comments</label>
-        <label><input type="checkbox" id="opt-locals" checked> Rename locals</label>
+      <div class="opts">
+        <label><input type="checkbox" id="opt-str" checked> Strings</label>
+        <label><input type="checkbox" id="opt-com" checked> Comments</label>
+        <label><input type="checkbox" id="opt-num" checked> Numbers</label>
+        <label><input type="checkbox" id="opt-loc" checked> Locals</label>
+        <label><input type="checkbox" id="opt-junk" checked> Junk</label>
       </div>
-      <div class="row">
-        <button id="btn-example" class="link-btn">Load example</button>
-      </div>
+      <button id="btn-obf" class="btn-main" disabled>Obfuscate</button>
     </section>
 
-    <section class="panel">
-      <h2>Files <span id="count"></span></h2>
-      <ul id="file-list"><li class="empty">No files yet</li></ul>
-    </section>
-
-    <section class="actions">
-      <button id="btn-run" disabled>Obfuscate</button>
-      <button id="btn-clear" disabled>Clear</button>
+    <section class="block" id="output-block" hidden>
+      <div class="block-head">
+        <span class="label">Output</span>
+        <div class="btns">
+          <button id="btn-download" class="btn-tiny btn-accent">Download</button>
+          <button id="btn-copy" class="btn-tiny">Copy</button>
+        </div>
+      </div>
+      <textarea id="output" class="code" readonly spellcheck="false"></textarea>
+      <div class="block-foot"><span id="out-stats"></span></div>
     </section>
   </main>
 
-  <footer>
-    <p>WitchSec v0.1 — code protection tool. No loaders, no key systems, no webhooks.</p>
-  </footer>
+  <footer><p>WitchSec v1.0 — code protection tool.</p></footer>
 
-  <script src="assets/lexer.js"></script>
-  <script src="assets/ir.js"></script>
-  <!-- parser.js, codegen.js, serialize.js, vm-template.js, obfuscator.js, app.js added in later messages -->
+  <script src="assets/obfuscator.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
