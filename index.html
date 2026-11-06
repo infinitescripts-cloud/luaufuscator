@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WitchSec</title>
+  <meta name="description" content="WitchSec — Luau obfuscator with custom VM. Runs entirely in your browser.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="brand">
+    <div class="logo">✦ WitchSec</div>
+    <p class="tagline">Luau VM obfuscator. Runs in your browser. Nothing leaves your device.</p>
+  </header>
+
+  <main>
+    <section id="drop" class="drop">
+      <p class="big">Drop <code>.lua</code> · <code>.luau</code> · <code>.txt</code></p>
+      <p class="sub">or <span class="link">tap to browse</span></p>
+      <input id="file-input" type="file" multiple accept=".lua,.luau,.txt,text/plain" hidden>
+    </section>
+
+    <section class="panel">
+      <h2>Options</h2>
+      <div class="row">
+        <label>Seed
+          <input id="seed" type="number" min="0" placeholder="random">
+        </label>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="opt-vm" checked> Bytecode VM</label>
+        <label><input type="checkbox" id="opt-strings" checked> Encrypt strings</label>
+        <label><input type="checkbox" id="opt-comments" checked> Strip comments</label>
+        <label><input type="checkbox" id="opt-locals" checked> Rename locals</label>
+      </div>
+      <div class="row">
+        <button id="btn-example" class="link-btn">Load example</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Files <span id="count"></span></h2>
+      <ul id="file-list"><li class="empty">No files yet</li></ul>
+    </section>
+
+    <section class="actions">
+      <button id="btn-run" disabled>Obfuscate</button>
+      <button id="btn-clear" disabled>Clear</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>WitchSec v0.1 — code protection tool. No loaders, no key systems, no webhooks.</p>
+  </footer>
+
+  <script src="assets/lexer.js"></script>
+  <script src="assets/ir.js"></script>
+  <!-- parser.js, codegen.js, serialize.js, vm-template.js, obfuscator.js, app.js added in later messages -->
+</body>
+</html>
